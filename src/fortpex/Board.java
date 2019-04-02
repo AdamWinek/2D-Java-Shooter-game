@@ -84,7 +84,7 @@ public class Board extends JPanel implements ActionListener  {
         
         
         g.setColor(Color.black);
-        g.drawString("Rounds survived ", 5, 15);
+        g.drawString("Rounds survived ", 5,  15);
 
         
     }
