@@ -1,6 +1,8 @@
 package fortpex;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -20,6 +22,7 @@ public class Board extends JPanel implements ActionListener  {
 	private Player sprite;
 	private final int DELAY = 10;
 	private Enemy bad;
+	private boolean touched = false;
 	
 	
 	
@@ -43,8 +46,15 @@ public class Board extends JPanel implements ActionListener  {
 	
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        if (!touched) {
+        	doDrawing(g);
+        } else {
+        	drawGameOver(g);
+        }
+        	
 
-        doDrawing(g);
+      
         
         Toolkit.getDefaultToolkit().sync();
     }
@@ -78,12 +88,27 @@ public class Board extends JPanel implements ActionListener  {
 
         
     }
+    private void drawGameOver(Graphics g) {
+
+    	String msg = "Game Over";
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (1000 - fm.stringWidth(msg)) / 2,
+                800 / 2);
+   }
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		sprite.move();
 		bad.chase(sprite.getX(), sprite.getY());
+		
+		if (sprite.checkCollision(bad)) {
+			touched = true;
+		}
 		
 		for (Bullet bullet: sprite.bullets) {
 			bullet.bulletMove(Player.directionFacing.NORTH);
@@ -92,6 +117,7 @@ public class Board extends JPanel implements ActionListener  {
 		
 		repaint();
 	}
+	  
 	 private class TAdapter extends KeyAdapter {
 
 	        @Override
