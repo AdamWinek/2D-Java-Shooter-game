@@ -25,12 +25,9 @@ public class Bullet extends Sprite {
 				
 			
 			
-			if (d == null) {
-				return;
-			}
 		
 		
-			if ( !hasShot) {
+			if ( hasShot) {
 			
 				switch (d) {
 				case NORTH:

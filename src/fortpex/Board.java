@@ -69,6 +69,7 @@ public class Board extends JPanel implements ActionListener  {
         
         for (Bullet bullet: sprite.bullets) {
         	bullet.bulletMove(Player.directionFacing.NORTH);
+        	g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
         }
         
         
