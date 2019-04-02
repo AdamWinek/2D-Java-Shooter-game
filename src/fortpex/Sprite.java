@@ -67,11 +67,11 @@ public class Sprite {
 		return image;
 	}
 	public Rectangle getBounds() {
-        return new Rectangle(x, y, w, h);
+        return new Rectangle(x, y, 100, 100);
     }
 	public boolean checkCollision(Sprite obj) {
 		
-		Rectangle active = new Rectangle(x, y, w, h);
+		Rectangle active = new Rectangle(x, y, 100, 100);
 		Rectangle passive = obj.getBounds();
 		
 		if (active.intersects(passive)) {
