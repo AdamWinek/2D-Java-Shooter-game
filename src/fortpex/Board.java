@@ -94,7 +94,7 @@ public class Board extends JPanel implements ActionListener  {
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
-        g.setColor(Color.white);
+        g.setColor(Color.black);
         g.setFont(small);
         g.drawString(msg, (1000 - fm.stringWidth(msg)) / 2,
                 800 / 2);
