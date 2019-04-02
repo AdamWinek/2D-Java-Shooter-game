@@ -1,7 +1,7 @@
 package fortpex;
 
 import java.awt.Image;
-
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -16,6 +16,7 @@ public class Sprite {
 	protected boolean isVisible;
 	protected Image image;
 	protected String imageLocation;
+	
 	
 	
 	public Sprite(int x, int y, String imageLocation) {
@@ -63,6 +64,21 @@ public class Sprite {
 	
 	public Image getImage() {
 		return image;
+	}
+	public Rectangle getBounds() {
+        return new Rectangle(x, y, w, h);
+    }
+	public boolean checkCollision(Sprite obj) {
+		
+		Rectangle active = new Rectangle(x, y, w, h);
+		Rectangle passive = obj.getBounds();
+		
+		if (active.intersects(passive)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	
