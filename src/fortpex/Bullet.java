@@ -2,6 +2,8 @@ package fortpex;
 
 
 
+import java.awt.Image;
+
 import fortpex.Player.directionFacing;
 
 
@@ -16,6 +18,11 @@ public class Bullet extends Sprite {
 		super(x, y, imageLocation);
 		hasShot = false;
 		// TODO Auto-generated constructor stub
+		
+		
+		
+		Image newImage = image.getScaledInstance(20 , 20, Image.SCALE_DEFAULT);
+		image = newImage;
 	}
 
 	

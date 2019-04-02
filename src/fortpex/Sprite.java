@@ -35,6 +35,7 @@ public class Sprite {
 		image = ii.getImage();
 		Image newImage = image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
 		image = newImage;
+		
 		w = newImage.getWidth(null);
 		h = newImage.getHeight(null);
 	}

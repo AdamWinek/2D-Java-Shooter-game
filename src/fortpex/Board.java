@@ -30,7 +30,7 @@ public class Board extends JPanel implements ActionListener  {
 
 	private void initBoard() {
 		addKeyListener(new TAdapter());
-        setBackground(Color.black);
+        setBackground(Color.white);
         setFocusable(true);
 		
         sprite = new Player(0, 0, "src/resources/box.png");
@@ -73,7 +73,7 @@ public class Board extends JPanel implements ActionListener  {
         }
         
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.black);
         g.drawString("Rounds survived ", 5, 15);
 
         
