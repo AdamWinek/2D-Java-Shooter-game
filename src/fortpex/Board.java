@@ -23,6 +23,7 @@ public class Board extends JPanel implements ActionListener  {
 	private final int DELAY = 10;
 	private Enemy bad;
 	private boolean touched = false;
+	private boolean shot = false;
 	
 	
 	
@@ -112,6 +113,10 @@ public class Board extends JPanel implements ActionListener  {
 		
 		for (Bullet bullet: sprite.bullets) {
 			bullet.bulletMove(Player.directionFacing.NORTH);
+			if (bullet.checkCollision(bad)) {
+				shot = true;
+				touched = true;
+			}
 		}
 		
 		
