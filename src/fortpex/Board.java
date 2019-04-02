@@ -21,7 +21,7 @@ public class Board extends JPanel implements ActionListener  {
 	private final int DELAY = 10;
 	private Enemy bad;
 	
-	
+	private Bullet bullet;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
@@ -35,6 +35,7 @@ public class Board extends JPanel implements ActionListener  {
 		
         sprite = new Player(0, 0, "src/resources/box.png");
         bad = new Enemy(500, 500, "src/resources/zombie.png");
+        bullet = new Bullet(0, 0, "src/resources/pixil-frame-0.png");
         timer = new Timer(DELAY, this);
         timer.start();
 		
@@ -66,6 +67,11 @@ public class Board extends JPanel implements ActionListener  {
         
         g2d.rotate(-bad.getRot(), bad.getCenterX(), bad.getCenterY());
         
+        for (Bullet bullet: sprite.bullets) {
+        	bullet.bulletMove(Player.directionFacing.NORTH);
+        }
+        
+        
         g.setColor(Color.WHITE);
         g.drawString("Rounds survived ", 5, 15);
 
@@ -77,7 +83,7 @@ public class Board extends JPanel implements ActionListener  {
 		// TODO Auto-generated method stub
 		sprite.move();
 		bad.chase(sprite.getX(), sprite.getY());
-		
+		bullet.bulletMove(sprite.getDirection());
 		repaint();
 	}
 	 private class TAdapter extends KeyAdapter {

@@ -1,9 +1,14 @@
 package fortpex;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Sprite {
 
+	
+	public List<Bullet> bullets = new ArrayList<>();
+	
 	
 	public enum directionFacing {
 		NORTH, EAST, SOUTH, WEST 
@@ -91,5 +96,20 @@ public class Player extends Sprite {
 		}
 	}
 	
+	public void keyPressedShoot(KeyEvent e) {
+		int key = e.getKeyCode();
+		
+		
+		
+		if (key == KeyEvent.VK_SPACE) {
+			Bullet beingShot = new Bullet(getX(), getY(), "src/resources/pixil-frame-0.png");
+			
+			beingShot.bulletMove(getDirection());
+			beingShot.hasBeenFired();
+			bullets.add(beingShot);
+			
+			}
+			
+		}		
 		
 }

@@ -1,49 +1,57 @@
 package fortpex;
 
-import java.awt.event.KeyEvent;
+
 
 import fortpex.Player.directionFacing;
 
 
+
+
 public class Bullet extends Sprite {
 	
+	
+	private boolean hasShot;
 
-	boolean hasShot = false;
 	public Bullet(int x, int y, String imageLocation) {
 		super(x, y, imageLocation);
+		hasShot = false;
 		// TODO Auto-generated constructor stub
 	}
 
-	public void shoot(Player player) {
-		
-		
-		
-		
-		switch (player.getDirection()) {
-		case NORTH:
-			dy = -10;
-			break;
-		case EAST:
-			dx = 10;
-			break;
-		case SOUTH:
-			dy = 10;
-			break;
-		case WEST:
-			dx = -10;
-			break;
-			
-		}
-		hasShot = true;
-			
-	}
 	
-	public void bulletMove() {
-		if (!hasShot) {
-			return;
-		} else {
-			x += dx;
-			y += dy;
+	
+	
+	public void bulletMove(directionFacing d) {
+				
+			
+			
+			if (d == null) {
+				return;
+			}
+		
+		
+			if ( !hasShot) {
+			
+				switch (d) {
+				case NORTH:
+					dy = -10;
+					break;
+				case EAST:
+					dx = 10;
+					break;
+				case SOUTH:
+					dy = 10;
+					break;
+				case WEST:
+					dx = -10;
+					break;
+				}	
+			}	else {
+				x += dx;
+				y += dy;
+				
+			}
+			
 			
 			
 			if (x > 1000) {
@@ -63,9 +71,11 @@ public class Bullet extends Sprite {
 			
 			
 		}
-	}
-		
 	
+		
+	public void hasBeenFired() {
+		hasShot = false;
+	}
 	
 	
 	
