@@ -20,6 +20,7 @@ public class Player extends Sprite {
 	public Player(int x, int y, String imageLocation) {
 		super(x, y, imageLocation);
 		// TODO Auto-generated constructor stub
+		direction = directionFacing.NORTH;
 	}
 
 	
@@ -74,7 +75,22 @@ public class Player extends Sprite {
 			dy = 4;
 			direction = directionFacing.SOUTH;
 		}
-	}
+		
+
+		if (key == KeyEvent.VK_SPACE) {
+			Bullet beingShot = new Bullet(getX(), getY(), "src/resources/pixil-frame-0.png");
+			
+			beingShot.bulletMove(getDirection());
+			beingShot.hasBeenFired();
+			bullets.add(beingShot);
+			
+		}
+			
+	}		
+		
+		
+		
+	
 	
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -96,20 +112,6 @@ public class Player extends Sprite {
 		}
 	}
 	
-	public void keyPressedShoot(KeyEvent e) {
-		int key = e.getKeyCode();
-		
-		
-		
-		if (key == KeyEvent.VK_SPACE) {
-			Bullet beingShot = new Bullet(getX(), getY(), "src/resources/pixil-frame-0.png");
-			
-			beingShot.bulletMove(getDirection());
-			beingShot.hasBeenFired();
-			bullets.add(beingShot);
-			
-			}
-			
-		}		
-		
 }
+	
+

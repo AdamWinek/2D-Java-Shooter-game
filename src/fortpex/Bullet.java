@@ -27,7 +27,7 @@ public class Bullet extends Sprite {
 			
 		
 		
-			if ( hasShot) {
+			if ( !hasShot) {
 			
 				switch (d) {
 				case NORTH:
@@ -42,6 +42,7 @@ public class Bullet extends Sprite {
 				case WEST:
 					dx = -10;
 					break;
+					
 				}	
 			}	else {
 				x += dx;
@@ -71,7 +72,7 @@ public class Bullet extends Sprite {
 	
 		
 	public void hasBeenFired() {
-		hasShot = false;
+		hasShot = true;
 	}
 	
 	
