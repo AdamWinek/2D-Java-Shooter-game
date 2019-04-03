@@ -81,6 +81,11 @@ public class Board extends JPanel implements ActionListener  {
              
              g2d.rotate(-bad.getRot(), bad.getCenterX(), bad.getCenterY());
              
+             Color red = new Color (214, 48, 36);
+             g2d.setColor(red);
+             
+             g2d.fillRect(bad.getX(), bad.getCenterY() - 40 , (int) ((int)40 / ((10.0/bad.getHealth()))), 5);
+             
         	
         	
         }
@@ -97,11 +102,18 @@ public class Board extends JPanel implements ActionListener  {
         	
         }
         Font tr = new Font("Monospaced", Font.BOLD, 18);
-        Color blue = new Color (206, 225, 255);
+  
+        Color red = new Color (201, 64, 105);
+        Color yellow = new Color (226 ,185 , 61);
         g.setFont(tr);
-        g.setColor(blue);
-        g.drawString("Rounds survived ", 5 ,  15);
-        g.drawString("Health: " + sprite.getHealth(), 5, 45);
+        g.setColor(yellow);
+        g.drawString("Rounds survived ", 10 ,  45);
+        
+        Graphics healthbar = (Graphics2D) g;
+        
+        healthbar.setColor(red);
+        healthbar.drawString("Health:" , 10, 75);
+        healthbar.fillRect(95, 65, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
         
 
         

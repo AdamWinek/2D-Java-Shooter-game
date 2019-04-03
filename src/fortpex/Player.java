@@ -127,7 +127,7 @@ public class Player extends Sprite {
 	
 	
 	public void shotAt() {
-		health -= 1;
+		health -= 2;
 	}
 	
 	
