@@ -125,7 +125,12 @@ public class Board extends JPanel implements ActionListener  {
 		bad.chase(sprite.getX(), sprite.getY());
 		
 		if (sprite.checkCollision(bad)) {
+			sprite.shotAt();
+			bad.knockBack();
+		}
+		if (sprite.getHealth() == 0) {
 			touched = true;
+			
 		}
 		
 		for (Bullet bullet: sprite.bullets) {
