@@ -13,7 +13,7 @@ public class Sprite {
 	protected int h;
 	protected int dx;
 	protected int dy;
-	protected boolean isVisible; 
+	protected boolean isVisible = true; 
 	protected Image image;
 	protected String imageLocation;
 	
@@ -92,7 +92,7 @@ public class Sprite {
 		
 	}
 	public void changeVisible() {
-		isVisible = true;
+		isVisible = false;
 	}
 	
 	

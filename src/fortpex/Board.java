@@ -121,7 +121,7 @@ public class Board extends JPanel implements ActionListener  {
 				shot = true;
 				bad.shotat();
 				if (bad.getHealth() == 0) {
-					
+					bad.changeVisible();
 				}
 				
 				
