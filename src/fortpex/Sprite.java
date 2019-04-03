@@ -13,7 +13,7 @@ public class Sprite {
 	protected int h;
 	protected int dx;
 	protected int dy;
-	protected boolean isVisible;
+	protected boolean isVisible; 
 	protected Image image;
 	protected String imageLocation;
 	
