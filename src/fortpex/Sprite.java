@@ -19,6 +19,8 @@ public class Sprite {
 	
 	
 	
+	
+	
 	public Sprite(int x, int y, String imageLocation) {
 		// TODO Auto-generated constructor stub
 		this.x = x;
@@ -30,8 +32,8 @@ public class Sprite {
 	
 	private void loadImage() {
 		ImageIcon ii = new ImageIcon(imageLocation);
-		int dimensionsX = 100;
-		int dimensionsY = 100;
+		int dimensionsX = 50;
+		int dimensionsY = 50;
 		
 		image = ii.getImage();
 		Image newImage = image.getScaledInstance(dimensionsX, dimensionsY, Image.SCALE_DEFAULT);
