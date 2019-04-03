@@ -20,8 +20,10 @@ public class Bullet extends Sprite {
 		// TODO Auto-generated constructor stub
 		
 		
+		int dimensionsX = 5;
+		int dimensionsY = 5;
 		
-		Image newImage = image.getScaledInstance(20 , 20, Image.SCALE_DEFAULT);
+		Image newImage = image.getScaledInstance(dimensionsX , dimensionsY, Image.SCALE_DEFAULT);
 		image = newImage;
 	}
 
@@ -81,7 +83,12 @@ public class Bullet extends Sprite {
 	public void hasBeenFired() {
 		hasShot = true;
 	}
-	
+	public void isOutOfBounds() {
+		if (x == 1020) {
+			isVisible = false;
+		}
+		isVisible = true;
+	}
 	
 	
 	

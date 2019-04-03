@@ -23,6 +23,7 @@ public class Board extends JPanel implements ActionListener  {
 	private final int DELAY = 10;
 	private Enemy bad;
 	private boolean touched = false;
+	private boolean shot = false;
 	
 	
 	
@@ -36,7 +37,7 @@ public class Board extends JPanel implements ActionListener  {
         setBackground(Color.white);
         setFocusable(true);
 		
-        sprite = new Player(0, 0, "src/resources/box.png");
+        sprite = new Player(0, 0, "src/resources/player.png");
         bad = new Enemy(500, 500, "src/resources/zombie.png");
        
         timer = new Timer(DELAY, this);
@@ -79,12 +80,16 @@ public class Board extends JPanel implements ActionListener  {
         
         for (Bullet bullet: sprite.bullets) {
         	
-        	g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+        	if (bullet.getIsVisible()) {
+        		g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+        	}
+        	
+        	
         }
         
         
         g.setColor(Color.black);
-        g.drawString("Rounds survived ", 5,  15);
+        g.drawString("Rounds survived ", 5 ,  15);
 
         
     }
@@ -112,6 +117,15 @@ public class Board extends JPanel implements ActionListener  {
 		
 		for (Bullet bullet: sprite.bullets) {
 			bullet.bulletMove(Player.directionFacing.NORTH);
+			if (bullet.checkCollision(bad)) {
+				shot = true;
+				bad.shotat();
+				if (bad.getHealth() == 0) {
+					
+				}
+				
+				
+			}
 		}
 		
 		

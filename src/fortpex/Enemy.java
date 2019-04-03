@@ -1,8 +1,9 @@
-package fortpex;
+ package fortpex;
 
 public class Enemy extends Sprite {
 
 	private double rot;
+	private int health;
 	
 	public Enemy(int x, int y, String imageLocation) {
 		super(x, y, imageLocation);
@@ -54,6 +55,12 @@ public class Enemy extends Sprite {
 	public double getRot() {
 		return rot;
 		
-	}	
+	}
+	public void shotat() {
+		health -= 2;
+	}
+	public int getHealth() {
+		return health;
+	}
 	
 }

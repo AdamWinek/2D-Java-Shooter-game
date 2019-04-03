@@ -13,9 +13,11 @@ public class Sprite {
 	protected int h;
 	protected int dx;
 	protected int dy;
-	protected boolean isVisible;
+	protected boolean isVisible; 
 	protected Image image;
 	protected String imageLocation;
+	
+	
 	
 	
 	
@@ -30,23 +32,24 @@ public class Sprite {
 	
 	private void loadImage() {
 		ImageIcon ii = new ImageIcon(imageLocation);
-		
+		int dimensionsX = 50;
+		int dimensionsY = 50;
 		
 		image = ii.getImage();
-		Image newImage = image.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+		Image newImage = image.getScaledInstance(dimensionsX, dimensionsY, Image.SCALE_DEFAULT);
 		image = newImage;
 		
-		w = newImage.getWidth(null);
-		h = newImage.getHeight(null);
+		w = dimensionsX;
+		h = dimensionsY;
 	}
 	
 	
 	public int getCenterX() {
-		return x + (50);
+		return x + (w / 2);
 	}
 	
 	public int getCenterY() {
-		return y + (50);
+		return y + (h / 2);
 	}
 	
 	
@@ -63,15 +66,22 @@ public class Sprite {
 		return h;
 	}
 	
+	public boolean getIsVisible() {
+		return isVisible;
+	}
+	
+	
 	public Image getImage() {
 		return image;
 	}
 	public Rectangle getBounds() {
-        return new Rectangle(x, y, 100, 100);
+        return new Rectangle(x, y, w, h);
     }
+	
+	
 	public boolean checkCollision(Sprite obj) {
 		
-		Rectangle active = new Rectangle(x, y, 100, 100);
+		Rectangle active = new Rectangle(x, y, w, h);
 		Rectangle passive = obj.getBounds();
 		
 		if (active.intersects(passive)) {
@@ -80,6 +90,9 @@ public class Sprite {
 			return false;
 		}
 		
+	}
+	public void changeVisible() {
+		isVisible = true;
 	}
 	
 	
