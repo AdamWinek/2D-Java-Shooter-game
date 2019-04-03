@@ -96,10 +96,13 @@ public class Board extends JPanel implements ActionListener  {
         	
         	
         }
-        
-        
-        g.setColor(Color.black);
+        Font tr = new Font("Monospaced", Font.BOLD, 18);
+        Color blue = new Color (206, 225, 255);
+        g.setFont(tr);
+        g.setColor(blue);
         g.drawString("Rounds survived ", 5 ,  15);
+        g.drawString("Health: ", 5, 45);
+        
 
         
     }
