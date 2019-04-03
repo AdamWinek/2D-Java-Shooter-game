@@ -91,6 +91,9 @@ public class Sprite {
 		}
 		
 	}
+	public void changeVisible() {
+		isVisible = true;
+	}
 	
 	
 	
