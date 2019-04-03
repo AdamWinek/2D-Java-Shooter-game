@@ -3,7 +3,7 @@
 public class Enemy extends Sprite {
 
 	private double rot;
-	private int health = 10;
+	
 	
 	public Enemy(int x, int y, String imageLocation) {
 		super(x, y, imageLocation);
@@ -58,9 +58,15 @@ public class Enemy extends Sprite {
 	}
 	public void shotat() {
 		health -= 2;
+		
+		
 	}
-	public int getHealth() {
-		return health;
+		
+	public void knockBack() {
+		
+		x -= 100 * Math.cos(rot);
+		y -= 100 * Math.sin(rot);
+		
+		
 	}
-	
 }

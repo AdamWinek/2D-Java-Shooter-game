@@ -17,7 +17,7 @@ public class Sprite {
 	protected Image image;
 	protected String imageLocation;
 	
-	
+	protected int health = 10;
 	
 	
 	
@@ -70,6 +70,10 @@ public class Sprite {
 		return isVisible;
 	}
 	
+	public int getHealth() {
+		return health;
+	}
+
 	
 	public Image getImage() {
 		return image;
