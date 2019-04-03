@@ -101,7 +101,7 @@ public class Board extends JPanel implements ActionListener  {
         g.setFont(tr);
         g.setColor(blue);
         g.drawString("Rounds survived ", 5 ,  15);
-        g.drawString("Health: ", 5, 45);
+        g.drawString("Health: " + sprite.getHealth(), 5, 45);
         
 
         
