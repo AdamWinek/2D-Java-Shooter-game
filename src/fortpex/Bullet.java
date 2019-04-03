@@ -20,8 +20,10 @@ public class Bullet extends Sprite {
 		// TODO Auto-generated constructor stub
 		
 		
+		int dimensionsX = 10;
+		int dimensionsY = 10;
 		
-		Image newImage = image.getScaledInstance(20 , 20, Image.SCALE_DEFAULT);
+		Image newImage = image.getScaledInstance(dimensionsX , dimensionsY, Image.SCALE_DEFAULT);
 		image = newImage;
 	}
 
