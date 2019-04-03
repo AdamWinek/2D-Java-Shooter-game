@@ -71,13 +71,23 @@ public class Board extends JPanel implements ActionListener  {
         
         
         bad.angleBetween(sprite.getX(), sprite.getY());
+       
         
-        g2d.rotate(bad.getRot(), bad.getCenterX(), bad.getCenterY() );
+        if (bad.getIsVisible()) {
+        	
+        	 g2d.rotate(bad.getRot(), bad.getCenterX(), bad.getCenterY() );
+             
+             g2d.drawImage(bad.getImage(), bad.getX(), bad.getY(), this);
+             
+             g2d.rotate(-bad.getRot(), bad.getCenterX(), bad.getCenterY());
+             
+        	
+        	
+        }
         
-        g2d.drawImage(bad.getImage(), bad.getX(), bad.getY(), this);
         
-        g2d.rotate(-bad.getRot(), bad.getCenterX(), bad.getCenterY());
         
+       
         for (Bullet bullet: sprite.bullets) {
         	
         	if (bullet.getIsVisible()) {
