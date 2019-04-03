@@ -130,8 +130,10 @@ public class Board extends JPanel implements ActionListener  {
 			if (bullet.checkCollision(bad)) {
 				shot = true;
 				bad.shotat();
+				bullet.changeVisible();
 				if (bad.getHealth() == 0) {
 					bad.changeVisible();
+					
 				}
 				
 				

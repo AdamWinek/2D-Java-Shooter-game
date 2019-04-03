@@ -3,7 +3,7 @@
 public class Enemy extends Sprite {
 
 	private double rot;
-	private int health;
+	private int health = 10;
 	
 	public Enemy(int x, int y, String imageLocation) {
 		super(x, y, imageLocation);

@@ -81,10 +81,12 @@ public class Sprite {
 	
 	public boolean checkCollision(Sprite obj) {
 		
+		
+		
 		Rectangle active = new Rectangle(x, y, w, h);
 		Rectangle passive = obj.getBounds();
 		
-		if (active.intersects(passive)) {
+		if (active.intersects(passive) && isVisible && obj.getIsVisible()) {
 			return true;
 		} else {
 			return false;
