@@ -1,4 +1,4 @@
-package fortpex;
+ package fortpex;
 
 public class Enemy extends Sprite {
 

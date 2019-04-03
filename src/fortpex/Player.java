@@ -58,37 +58,50 @@ public class Player extends Sprite {
 		
 		if (key == KeyEvent.VK_LEFT) {
 			dx = -4;
-			direction = directionFacing.WEST;
 		}
 
 		if (key == KeyEvent.VK_RIGHT) {
 			dx = 4;
-			direction = directionFacing.EAST;
 		}
 
 		if (key == KeyEvent.VK_UP) {
 			dy = -4;
-			direction = directionFacing.NORTH;
 		}
 
 		if (key == KeyEvent.VK_DOWN) {
 			dy = 4;
-			direction = directionFacing.SOUTH;
 		}
 		
-
-		if (key == KeyEvent.VK_SPACE) {
-			Bullet beingShot = new Bullet(getX(), getY(), "src/resources/pixil-frame-0.png");
-			
-			beingShot.bulletMove(getDirection());
-			beingShot.hasBeenFired();
-			bullets.add(beingShot);
-			
+		
+		if (key == KeyEvent.VK_W) {
+			direction = directionFacing.NORTH;
+			shoot();
+		}
+		
+		if (key == KeyEvent.VK_A) {
+			direction = directionFacing.WEST;
+			shoot();
+		}
+		
+		if (key == KeyEvent.VK_S) {
+			direction = directionFacing.SOUTH;
+			shoot();
+		}
+		
+		if (key == KeyEvent.VK_D) {
+			direction = directionFacing.EAST;
+			shoot();
 		}
 			
 	}		
 		
+	public void shoot() {
+		Bullet beingShot = new Bullet(getCenterX(), getCenterY(), "src/resources/bullet.png");
 		
+		beingShot.bulletMove(getDirection());
+		beingShot.hasBeenFired();
+		bullets.add(beingShot);
+	}
 		
 	
 	
@@ -111,6 +124,10 @@ public class Player extends Sprite {
 			dy = 0;
 		}
 	}
+	
+	
+
+	
 	
 }
 	
