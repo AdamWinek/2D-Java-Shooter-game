@@ -115,7 +115,12 @@ public class Board extends JPanel implements ActionListener  {
 			bullet.bulletMove(Player.directionFacing.NORTH);
 			if (bullet.checkCollision(bad)) {
 				shot = true;
-				touched = true;
+				bad.shotat();
+				if (bad.getHealth() == 0) {
+					
+				}
+				
+				
 			}
 		}
 		
