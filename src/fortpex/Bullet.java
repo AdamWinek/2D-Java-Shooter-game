@@ -19,7 +19,7 @@ public class Bullet extends Sprite {
 		hasShot = false;
 		// TODO Auto-generated constructor stub
 		
-		
+		isVisible = true;
 		int dimensionsX = 5;
 		int dimensionsY = 5;
 		
