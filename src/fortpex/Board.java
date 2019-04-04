@@ -71,14 +71,7 @@ public class Board extends JPanel implements ActionListener  {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
-<<<<<<< HEAD
 
-       
-=======
-		
-       
-        
->>>>>>> branch 'master' of https://github.com/AdamWinek/Fortpex-2-.git
 
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
                 sprite.getY(), this);
