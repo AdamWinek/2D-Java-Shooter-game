@@ -6,8 +6,8 @@ import java.util.List;
 public class Round {
 
 	private List<Enemy>  zombies = new ArrayList<>();
-	private int roundCounter;
-	
+	private int roundCounter = 0;
+	private int health;
 	
 	public Round() {
 		// TODO Auto-generated constructor stub
@@ -17,6 +17,11 @@ public class Round {
 	
 	public List<Enemy> getZombies() {
 		return zombies;
+	}
+	
+	
+	public int getHealth() {
+		return health;
 	}
 	
 	
@@ -32,18 +37,55 @@ public class Round {
 			additionalHealth++;
 		}
 		
-		
+		this.health = additionalHealth + 10;
 		
 		for (int i = 0; i < zombiesInRound; i++) {
+			
+			
 			Enemy zom = new Enemy( (int) (( Math.random() * 500) + 500), (int)  (Math.random() * 1000), "src/resources/zombie.png", 10 + additionalHealth);
 			
-			
+			zombies.add(zom);
 			
 		}
+		
+		
+		
+		
+		
+	}
+	
+	public int getRoundCount() {
+		return roundCounter;
+	}
+	
+	
+	public boolean isRoundOver() {
+		
+		boolean allded = true;
+		
+		
+		
+		for(Enemy zom: zombies) {
+			if (zom.getIsVisible()) {
+				allded = false;
+			}
+		}
+		
+		
+		
+		return allded;
 		
 	}
 	
 	
+	
+	public void roundOver() {
+		zombies.clear();
+		roundCounter++;
+		
+		
+		
+	}
 	
 	
 	
