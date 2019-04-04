@@ -96,7 +96,7 @@ public class Board extends JPanel implements ActionListener  {
         	
         	break;
         case SOUTH:
-       	 	g2d.rotate( Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
+       	 	g2d.rotate( Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() ); 
 
         	
         	g2d.drawImage(sprite.getImage(), sprite.getX(), 
