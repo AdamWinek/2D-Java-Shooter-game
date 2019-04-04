@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +29,6 @@ public class Board extends JPanel implements ActionListener  {
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
-
 		initBoard();
 	}
 
@@ -50,16 +48,9 @@ public class Board extends JPanel implements ActionListener  {
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        
         if (!touched) {
-        	Image img = Toolkit.getDefaultToolkit().createImage("src/resources/background.png");
-
-             
-             g.drawImage(img, 0, 0, null);
-        	
         	doDrawing(g);
         } else {
-        	
         	drawGameOver(g);
         }
         	
@@ -73,59 +64,10 @@ public class Board extends JPanel implements ActionListener  {
         
         Graphics2D g2d = (Graphics2D) g;
 
-		
        
-        
-        
-        switch (sprite.getDirection()) {
-        case NORTH:
-        	
-       	 	g2d.rotate( -Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
-        	
-        	
-        	g2d.drawImage(sprite.getImage(), sprite.getX(),
-                    sprite.getY(), this);
-       	 	g2d.rotate( Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
 
-        	break;
-        case EAST:
-        	
-        	g2d.drawImage(sprite.getImage(), sprite.getX(), 
-                    sprite.getY(), this);
-        	
-        	break;
-        case SOUTH:
-       	 	g2d.rotate( Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
-
-        	
-        	g2d.drawImage(sprite.getImage(), sprite.getX(), 
-                    sprite.getY(), this);
-        	
-       	 	g2d.rotate( -Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
-
-        	break;
-        case WEST:
-        	
-        	
-       	 	g2d.rotate( Math.PI  , sprite.getCenterX(), sprite.getCenterY() );
-
-        	g2d.drawImage(sprite.getImage(), sprite.getX(), 
-                    sprite.getY(), this);
-       	 	
-        	g2d.rotate( -Math.PI , sprite.getCenterX(), sprite.getCenterY() );
-
-
-
-
-        	
-        	break;
-        }
-        
-        
-        
-        
-
-        
+        g2d.drawImage(sprite.getImage(), sprite.getX(), 
+                sprite.getY(), this);
         
         
         bad.angleBetween(sprite.getX(), sprite.getY());
@@ -154,29 +96,7 @@ public class Board extends JPanel implements ActionListener  {
         for (Bullet bullet: sprite.bullets) {
         	
         	if (bullet.getIsVisible()) {
-        		
-        		switch (sprite.getDirection()) {
-        		case NORTH:
-        			g2d.drawImage(bullet.getImage(), bullet.getX() + 6, bullet.getY() , this);
-        			break;
-        		case EAST:
-        			g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY()  + 6 , this);
-        			break;
-        		case SOUTH:
-        			
-        			g2d.drawImage(bullet.getImage(), bullet.getX() - 10, bullet.getY() , this);
-        			break;
-        		case WEST:
-        			g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY()  - 10 , this);
-        			
-        			break;
-        		}
-        		
-        		
-        		
-        		
-        		
-        		
+        		g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
         	}
         	
         	
