@@ -50,11 +50,12 @@ public class Board extends JPanel implements ActionListener  {
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        
         if (!touched) {
         	Image img = Toolkit.getDefaultToolkit().createImage("src/resources/background.png");
 
              
-             g.drawImage(img, 0, 0, this);
+             g.drawImage(img, 0, 0, null);
         	
         	doDrawing(g);
         } else {
@@ -71,6 +72,7 @@ public class Board extends JPanel implements ActionListener  {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
+
 		
        
         
@@ -111,6 +113,9 @@ public class Board extends JPanel implements ActionListener  {
                     sprite.getY(), this);
        	 	
         	g2d.rotate( -Math.PI , sprite.getCenterX(), sprite.getCenterY() );
+
+
+
 
         	
         	break;
@@ -188,7 +193,7 @@ public class Board extends JPanel implements ActionListener  {
         
         healthbar.setColor(red);
         healthbar.drawString("Health:" , 10, 75);
-        healthbar.fillRect(95, 65, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
+        healthbar.fillRect(95, 60, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
         
 
         
