@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,7 @@ public class Board extends JPanel implements ActionListener  {
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
+
 		initBoard();
 	}
 
@@ -49,8 +51,14 @@ public class Board extends JPanel implements ActionListener  {
         super.paintComponent(g);
         
         if (!touched) {
+        	Image img = Toolkit.getDefaultToolkit().createImage("src/resources/background.png");
+
+             
+             g.drawImage(img, 0, 0, this);
+        	
         	doDrawing(g);
         } else {
+        	
         	drawGameOver(g);
         }
         	
@@ -63,8 +71,14 @@ public class Board extends JPanel implements ActionListener  {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
+<<<<<<< HEAD
 
        
+=======
+		
+       
+        
+>>>>>>> branch 'master' of https://github.com/AdamWinek/Fortpex-2-.git
 
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
                 sprite.getY(), this);
