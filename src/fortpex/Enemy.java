@@ -1,16 +1,13 @@
  package fortpex;
 
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-
 public class Enemy extends Sprite {
 
 	private double rot;
 	
 	
-	public Enemy(int x, int y, String imageLocation) {
+	public Enemy(int x, int y, String imageLocation, int health) {
 		super(x, y, imageLocation);
+		this.health = health;
 		// TODO Auto-generated constructor stub
 	}
 
