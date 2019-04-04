@@ -4,10 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+
 public class MovingSprite extends JFrame {
 
 	public MovingSprite() {
 		// TODO Auto-generated constructor stub
+        
+		
+		
 		initUI();
 	}
 
@@ -20,7 +24,12 @@ public class MovingSprite extends JFrame {
 	}
 	
 	private void initUI() {
-		add(new Board());
+		
+		add(new Board());		
+		
+		
+		
+		
 		setTitle("fuck");
 		setSize( 1000, 800);
 		setLocationRelativeTo(null);

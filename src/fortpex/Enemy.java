@@ -1,5 +1,9 @@
  package fortpex;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 public class Enemy extends Sprite {
 
 	private double rot;
@@ -26,6 +30,9 @@ public class Enemy extends Sprite {
 		
 		
 	}
+	
+	
+	
 	
 	public void chase(int x1,int y1) {
 		if (x1 > this.x) {

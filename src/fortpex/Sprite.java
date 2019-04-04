@@ -32,8 +32,8 @@ public class Sprite {
 	
 	private void loadImage() {
 		ImageIcon ii = new ImageIcon(imageLocation);
-		int dimensionsX = 50;
-		int dimensionsY = 50;
+		int dimensionsX = 30;
+		int dimensionsY = 30;
 		
 		image = ii.getImage();
 		Image newImage = image.getScaledInstance(dimensionsX, dimensionsY, Image.SCALE_DEFAULT);
