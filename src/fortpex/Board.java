@@ -40,7 +40,7 @@ public class Board extends JPanel implements ActionListener  {
         setFocusable(true);
 		
         sprite = new Player(0, 0, "src/resources/player.png");
-        bad = new Enemy(500, 500, "src/resources/zombie.png");
+        bad = new Enemy(500, 500, "src/resources/zombie.png", 10);
        
         timer = new Timer(DELAY, this);
         timer.start();
@@ -74,9 +74,53 @@ public class Board extends JPanel implements ActionListener  {
 		
        
         
+        
+        switch (sprite.getDirection()) {
+        case NORTH:
+        	
+       	 	g2d.rotate( -Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
+        	
+        	
+        	g2d.drawImage(sprite.getImage(), sprite.getX(),
+                    sprite.getY(), this);
+       	 	g2d.rotate( Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
 
-        g2d.drawImage(sprite.getImage(), sprite.getX(), 
-                sprite.getY(), this);
+        	break;
+        case EAST:
+        	
+        	g2d.drawImage(sprite.getImage(), sprite.getX(), 
+                    sprite.getY(), this);
+        	
+        	break;
+        case SOUTH:
+       	 	g2d.rotate( Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
+
+        	
+        	g2d.drawImage(sprite.getImage(), sprite.getX(), 
+                    sprite.getY(), this);
+        	
+       	 	g2d.rotate( -Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
+
+        	break;
+        case WEST:
+        	
+        	
+       	 	g2d.rotate( Math.PI  , sprite.getCenterX(), sprite.getCenterY() );
+
+        	g2d.drawImage(sprite.getImage(), sprite.getX(), 
+                    sprite.getY(), this);
+       	 	
+        	g2d.rotate( -Math.PI , sprite.getCenterX(), sprite.getCenterY() );
+
+        	
+        	break;
+        }
+        
+        
+        
+        
+
+        
         
         
         bad.angleBetween(sprite.getX(), sprite.getY());
@@ -105,7 +149,29 @@ public class Board extends JPanel implements ActionListener  {
         for (Bullet bullet: sprite.bullets) {
         	
         	if (bullet.getIsVisible()) {
-        		g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), this);
+        		
+        		switch (sprite.getDirection()) {
+        		case NORTH:
+        			g2d.drawImage(bullet.getImage(), bullet.getX() + 6, bullet.getY() , this);
+        			break;
+        		case EAST:
+        			g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY()  + 6 , this);
+        			break;
+        		case SOUTH:
+        			
+        			g2d.drawImage(bullet.getImage(), bullet.getX() - 10, bullet.getY() , this);
+        			break;
+        		case WEST:
+        			g2d.drawImage(bullet.getImage(), bullet.getX(), bullet.getY()  - 10 , this);
+        			
+        			break;
+        		}
+        		
+        		
+        		
+        		
+        		
+        		
         	}
         	
         	
