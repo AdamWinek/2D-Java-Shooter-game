@@ -64,7 +64,7 @@ public class Board extends JPanel implements ActionListener  {
         
         Graphics2D g2d = (Graphics2D) g;
 
-        
+       
 
         g2d.drawImage(sprite.getImage(), sprite.getX(), 
                 sprite.getY(), this);
@@ -113,7 +113,7 @@ public class Board extends JPanel implements ActionListener  {
         
         healthbar.setColor(red);
         healthbar.drawString("Health:" , 10, 75);
-        healthbar.fillRect(95, 65, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
+        healthbar.fillRect(95, 60, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
         
 
         
