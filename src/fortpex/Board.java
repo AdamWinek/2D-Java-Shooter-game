@@ -25,6 +25,7 @@ public class Board extends JPanel implements ActionListener  {
 	private Enemy bad;
 	private boolean touched = false;
 	private boolean shot = false;
+	private Round round;
 	
 	
 	
@@ -40,7 +41,7 @@ public class Board extends JPanel implements ActionListener  {
         setFocusable(true);
 		
         sprite = new Player(0, 0, "src/resources/player.png");
-        bad = new Enemy(500, 500, "src/resources/zombie.png", 10);
+        round = new Round();
        
         timer = new Timer(DELAY, this);
         timer.start();
@@ -71,10 +72,11 @@ public class Board extends JPanel implements ActionListener  {
     private void doDrawing(Graphics g) {
         
         Graphics2D g2d = (Graphics2D) g;
+
 		
        
         
-        
+        // DRAWS CHARECTER
         switch (sprite.getDirection()) {
         case NORTH:
         	
@@ -120,28 +122,33 @@ public class Board extends JPanel implements ActionListener  {
         
         
 
-        
-        
-        
-        bad.angleBetween(sprite.getX(), sprite.getY());
-       
-        
-        if (bad.getIsVisible()) {
+        for (Enemy zom: round.getZombies()) {
+        	 
+            zom.angleBetween(sprite.getX(), sprite.getY());
+           
+            
+            if (zom.getIsVisible()) {
+            	
+            	 g2d.rotate(zom.getRot(), zom.getCenterX(), zom.getCenterY() );
+                 
+                 g2d.drawImage(zom.getImage(), zom.getX(), zom.getY(), this);
+                 
+                 g2d.rotate(-zom.getRot(), zom.getCenterX(), zom.getCenterY());
+                 
+                 Color red = new Color (214, 48, 36);
+                 g2d.setColor(red);
+                 
+                 g2d.fillRect(zom.getX(), zom.getCenterY() - 40 , (int) ((int)40 / ((10.0/zom.getHealth()))), 5);
+                 
+            	
+            	
+            }
         	
-        	 g2d.rotate(bad.getRot(), bad.getCenterX(), bad.getCenterY() );
-             
-             g2d.drawImage(bad.getImage(), bad.getX(), bad.getY(), this);
-             
-             g2d.rotate(-bad.getRot(), bad.getCenterX(), bad.getCenterY());
-             
-             Color red = new Color (214, 48, 36);
-             g2d.setColor(red);
-             
-             g2d.fillRect(bad.getX(), bad.getCenterY() - 40 , (int) ((int)40 / ((10.0/bad.getHealth()))), 5);
-             
         	
         	
         }
+        
+       
         
         
         
@@ -188,7 +195,7 @@ public class Board extends JPanel implements ActionListener  {
         
         healthbar.setColor(red);
         healthbar.drawString("Health:" , 10, 75);
-        healthbar.fillRect(95, 65, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
+        healthbar.fillRect(95, 60, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
         
 
         
