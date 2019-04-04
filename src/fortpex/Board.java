@@ -51,11 +51,12 @@ public class Board extends JPanel implements ActionListener  {
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        
         if (!touched) {
         	Image img = Toolkit.getDefaultToolkit().createImage("src/resources/background.png");
 
              
-             g.drawImage(img, 0, 0, this);
+             g.drawImage(img, 0, 0, null);
         	
         	doDrawing(g);
         } else {
@@ -113,6 +114,9 @@ public class Board extends JPanel implements ActionListener  {
                     sprite.getY(), this);
        	 	
         	g2d.rotate( -Math.PI , sprite.getCenterX(), sprite.getCenterY() );
+
+
+
 
         	
         	break;
