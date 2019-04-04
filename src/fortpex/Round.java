@@ -7,7 +7,7 @@ public class Round {
 
 	private List<Enemy>  zombies = new ArrayList<>();
 	private int roundCounter = 0;
-	
+	private int health;
 	
 	public Round() {
 		// TODO Auto-generated constructor stub
@@ -17,6 +17,11 @@ public class Round {
 	
 	public List<Enemy> getZombies() {
 		return zombies;
+	}
+	
+	
+	public int getHealth() {
+		return health;
 	}
 	
 	
@@ -32,7 +37,7 @@ public class Round {
 			additionalHealth++;
 		}
 		
-		
+		this.health = additionalHealth + 10;
 		
 		for (int i = 0; i < zombiesInRound; i++) {
 			
@@ -49,32 +54,32 @@ public class Round {
 		
 	}
 	
+	public int getRoundCount() {
+		return roundCounter;
+	}
+	
+	
 	public boolean isRoundOver() {
 		
 		boolean allded = true;
 		
-		if (zombies == null) {
-			
-			roundOver();
-			
-			return true;
-		}
+		
+		
 		for(Enemy zom: zombies) {
 			if (zom.getIsVisible()) {
 				allded = false;
 			}
 		}
 		
-		if (allded) {
-			this.roundOver();
-		}
-		return !allded;
+		
+		
+		return allded;
 		
 	}
 	
 	
 	
-	private void roundOver() {
+	public void roundOver() {
 		zombies.clear();
 		roundCounter++;
 		

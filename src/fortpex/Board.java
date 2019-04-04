@@ -22,7 +22,7 @@ public class Board extends JPanel implements ActionListener  {
 	private Timer timer;
 	private Player sprite;
 	private final int DELAY = 10;
-	private Enemy bad;
+	
 	private boolean touched = false;
 	private boolean shot = false;
 	private Round round;
@@ -42,7 +42,7 @@ public class Board extends JPanel implements ActionListener  {
 		
         sprite = new Player(0, 0, "src/resources/player.png");
         round = new Round();
-       
+        round.runRound();
         timer = new Timer(DELAY, this);
         timer.start();
 		
@@ -193,13 +193,13 @@ public class Board extends JPanel implements ActionListener  {
         Color yellow = new Color (226 ,185 , 61);
         g.setFont(tr);
         g.setColor(yellow);
-        g.drawString("Rounds survived ", 10 ,  45);
+        g.drawString("Rounds survived " + round.getRoundCount(), 10 ,  45);
         
         Graphics healthbar = (Graphics2D) g;
         
         healthbar.setColor(red);
         healthbar.drawString("Health:" , 10, 75);
-        healthbar.fillRect(95, 60, (int) ((int)150 / ((10.0/sprite.getHealth()))), 15);
+        healthbar.fillRect(95, 60, (int) ((int)150 / (( round.getHealth()/sprite.getHealth()))), 15);
         
 
         
@@ -220,32 +220,43 @@ public class Board extends JPanel implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		sprite.move();
-		bad.chase(sprite.getX(), sprite.getY());
 		
-		if (sprite.checkCollision(bad)) {
-			sprite.shotAt();
-			bad.knockBack();
-		}
-		if (sprite.getHealth() == 0) {
-			touched = true;
+		for (Enemy zom:round.getZombies()) {
+			zom.chase(sprite.getX(), sprite.getY());
+
 			
-		}
-		
-		for (Bullet bullet: sprite.bullets) {
-			bullet.bulletMove(Player.directionFacing.NORTH);
-			if (bullet.checkCollision(bad)) {
-				shot = true;
-				bad.shotat();
-				bullet.changeVisible();
-				if (bad.getHealth() == 0) {
-					bad.changeVisible();
-					
-				}
-				
+			
+
+			if (sprite.checkCollision(zom)) {
+				sprite.shotAt();
+				zom.knockBack();
+			}
+			if (sprite.getHealth() == 0) {
+				touched = true;
 				
 			}
+			
+			for (Bullet bullet: sprite.bullets) {
+				bullet.bulletMove(Player.directionFacing.NORTH);
+				if (bullet.checkCollision(zom)) {
+					shot = true;
+					zom.shotat();
+					bullet.changeVisible();
+					if (zom.getHealth() == 0 || zom.getHealth() == 1) {
+						zom.changeVisible();
+						
+					}
+					
+					
+				}
+			}
+
 		}
-		
+		if (round.isRoundOver()) {
+			round.roundOver();
+			round.runRound();
+		}
+				
 		
 		repaint();
 	}
