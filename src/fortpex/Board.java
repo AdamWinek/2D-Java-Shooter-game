@@ -222,7 +222,7 @@ public class Board extends JPanel implements ActionListener  {
 		sprite.move();
 		
 		for (Enemy zom:round.getZombies()) {
-			zom.chase(sprite.getX(), sprite.getY());
+			zom.chase(sprite.getX(), sprite.getY(), round.getZombies());
 
 			
 			

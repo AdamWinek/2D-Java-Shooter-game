@@ -1,5 +1,7 @@
  package fortpex;
 
+import java.util.List;
+
 public class Enemy extends Sprite {
 
 	private double rot;
@@ -31,23 +33,79 @@ public class Enemy extends Sprite {
 	
 	
 	
-	public void chase(int x1,int y1) {
+	public void chase(int x1,int y1, List<Enemy> zombies) {
+		
+		
+		
+		
+		
+		
+		
+		int fuckU = 12;
+		
+		
+		
 		if (x1 > this.x) {
 			dx = 2;
+			for(Enemy zom: zombies) {
+				if (zom.isVisible) {
+					if(Math.abs(x  - zom.getX()) < fuckU && (zom.getX() != x && zom.getY() != y) && x < zom.getX()) {
+						dx = 0;
+					}
+				}
+				
+			}
+			
+			
+			
+			
 		}
 		if (x1 < this.x) {
+			
 			dx = -2;
+			for(Enemy zom: zombies) {
+				if(zom.getIsVisible()) {
+					if(Math.abs(x  - zom.getX()) < fuckU && (zom.getX() != x && zom.getY() != y)  && x > zom.getX()) {
+						dx = 0;
+					}
+				}
+				
+			}
+			
+			
 		}
 		if (x1 == this.x) {
 			dx = 0;
 			
 		}
+		
 		if (y1 > this.y) {
 			dy = 2;
+			for(Enemy zom: zombies) {
+				if(zom.getIsVisible()) {
+					if(Math.abs(y  - zom.getY()) < fuckU && (zom.getX() != x && zom.getY() != y) && y < zom.getY()) {
+						dy = 0;
+					}
+				}
+				
+			}
+			
 		}
 		if (y1 < this.y) {
+			
 			dy = -2;
+			
+			for(Enemy zom: zombies) {
+				if(zom.isVisible) {
+					if(  Math.abs(y  - zom.getY() ) < fuckU &&  (zom.getX() != x && zom.getY() != y) && y > zom.getY()) {
+						dy = 0;
+					}
+				}
+				
+			}
+			
 		}
+		
 		if (y1 == this.y) {
 			dy = 0;
 		}
