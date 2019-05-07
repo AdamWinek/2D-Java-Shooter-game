@@ -13,7 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,7 +26,7 @@ public class Board extends JPanel implements ActionListener  {
 	private boolean touched = false;
 	private boolean shot = false;
 	private Round round;
-	
+	Image image;
 	
 	
 	public Board() {
@@ -37,7 +37,7 @@ public class Board extends JPanel implements ActionListener  {
 
 	private void initBoard() {
 		addKeyListener(new TAdapter());
-        setBackground(Color.white);
+        // setBackground(Color.white);
         setFocusable(true);
 		
         sprite = new Player(0, 0, "src/resources/player.png");
@@ -45,6 +45,11 @@ public class Board extends JPanel implements ActionListener  {
         round.runRound();
         timer = new Timer(DELAY, this);
         timer.start();
+        ImageIcon back = new ImageIcon("src/resources/backround.jpg");
+    	
+		image = back.getImage();
+		Image newImage = image.getScaledInstance(1000, 800, Image.SCALE_DEFAULT);
+		image = newImage;
 		
 	}
 	
@@ -53,12 +58,14 @@ public class Board extends JPanel implements ActionListener  {
         
         
         if (!touched) {
-        	Image img = Toolkit.getDefaultToolkit().createImage("src/resources/background.png");
-
-             
-             g.drawImage(img, 0, 0, null);
         	
-        	doDrawing(g);
+        	
+        	try {
+				doDrawing(g);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } else {
         	
         	drawGameOver(g);
@@ -70,17 +77,26 @@ public class Board extends JPanel implements ActionListener  {
         Toolkit.getDefaultToolkit().sync();
     }
     
-    private void doDrawing(Graphics g) {
+    private void doDrawing(Graphics g) throws InterruptedException {
         
-        Graphics2D g2d = (Graphics2D) g;
-
-		
        
+    	Graphics2D g2d = (Graphics2D) g;
+
+    	// Draws backround
+        ImageIcon back = new ImageIcon("src/resources/backround.jpg");
+	
+		
         
+       
+        if (g2d.drawImage(image, 0 ,0 ,this)) {
+        	
+        
+       
         // DRAWS CHARECTER
         switch (sprite.getDirection()) {
         case NORTH:
-        	
+   
+  	
        	 	g2d.rotate( -Math.PI / 2 , sprite.getCenterX(), sprite.getCenterY() );
         	
         	
@@ -121,12 +137,8 @@ public class Board extends JPanel implements ActionListener  {
         	
         	break;
         }
-        
-        
-        
-        
-
-        for (Enemy zom: round.getZombies()) {
+   
+       for (Enemy zom: round.getZombies()) {
         	 
             zom.angleBetween(sprite.getX(), sprite.getY());
            
@@ -187,6 +199,7 @@ public class Board extends JPanel implements ActionListener  {
         	
         	
         }
+        
         Font tr = new Font("Monospaced", Font.BOLD, 18);
   
         Color red = new Color (201, 64, 105);
@@ -200,6 +213,7 @@ public class Board extends JPanel implements ActionListener  {
         healthbar.setColor(red);
         healthbar.drawString("Health:" , 10, 75);
         healthbar.fillRect(95, 60, (int) ((int)150 / (( round.getHealth()/sprite.getHealth()))), 15);
+        }
         
 
         
