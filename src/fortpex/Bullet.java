@@ -40,16 +40,16 @@ public class Bullet extends Sprite {
 			
 				switch (d) {
 				case NORTH:
-					dy = -10;
+					dy = -5;
 					break;
 				case EAST:
-					dx = 10;
+					dx = 5;
 					break;
 				case SOUTH:
-					dy = 10;
+					dy = 5;
 					break;
 				case WEST:
-					dx = -10;
+					dx = -5;
 					break;
 					
 				}	

@@ -25,7 +25,7 @@ public class Round {
 	}
 	
 	
-	public void runRound() {
+	public void runRound(Player  p) {
 		
 		int zombiesInRound = roundCounter + 10;
 		int additionalHealth = 0;
@@ -41,8 +41,12 @@ public class Round {
 		
 		for (int i = 0; i < zombiesInRound; i++) {
 			
+			int offset = 0;
+			if(p.isOnleftOfScreen()) {
+				offset = 500;
+			}
 			
-			Enemy zom = new Enemy( (int) (( Math.random() * 500) + 500), (int)  (Math.random() * 1000), "src/resources/zombie.png", 10 + additionalHealth);
+			Enemy zom = new Enemy( (int) (( Math.random() * 500) + offset), (int)  (Math.random() * 1000), "src/resources/zombie.png", 10 + additionalHealth);
 			
 			zombies.add(zom);
 			

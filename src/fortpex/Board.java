@@ -42,7 +42,7 @@ public class Board extends JPanel implements ActionListener  {
 		
         sprite = new Player(0, 0, "src/resources/player.png");
         round = new Round();
-        round.runRound();
+        round.runRound(sprite);
         timer = new Timer(DELAY, this);
         timer.start();
         ImageIcon back = new ImageIcon("src/resources/backround.jpg");
@@ -156,19 +156,12 @@ public class Board extends JPanel implements ActionListener  {
                  
                  g2d.fillRect(zom.getX(), zom.getCenterY() - 40 , (int) ((int)40 / ((10.0/zom.getHealth()))), 5);
                  
-            	
-            	
             }
         	
         	
         	
         }
         
-       
-        
-        
-        
-       
         for (Bullet bullet: sprite.bullets) {
         	
         	if (bullet.getIsVisible()) {
@@ -189,11 +182,6 @@ public class Board extends JPanel implements ActionListener  {
         			
         			break;
         		}
-        		
-        		
-        		
-        		
-        		
         		
         	}
         	
@@ -268,7 +256,7 @@ public class Board extends JPanel implements ActionListener  {
 		}
 		if (round.isRoundOver()) {
 			round.roundOver();
-			round.runRound();
+			round.runRound(sprite);
 		}
 				
 		
