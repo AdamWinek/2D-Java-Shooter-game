@@ -45,11 +45,11 @@ public class Enemy extends Sprite {
 		
 		
 		
-		if (x1 > this.x) {
+		if (x1 > this.getCenterX()) {
 			dx = 2;
 			for(Enemy zom: zombies) {
 				if (zom.isVisible) {
-					if(Math.abs(x  - zom.getX()) < fuckU && (zom.getX() != x && zom.getY() != y) && x < zom.getX()) {
+					if(Math.abs(getCenterX()  - zom.getCenterX()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterX() < zom.getCenterX()) {
 						dx = 0;
 					}
 				}
@@ -60,12 +60,12 @@ public class Enemy extends Sprite {
 			
 			
 		}
-		if (x1 < this.x) {
+		if (x1 < this.getCenterX()) {
 			
 			dx = -2;
 			for(Enemy zom: zombies) {
 				if(zom.getIsVisible()) {
-					if(Math.abs(x  - zom.getX()) < fuckU && (zom.getX() != x && zom.getY() != y)  && x > zom.getX()) {
+					if(Math.abs(getCenterX()  - zom.getCenterX()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY())  && getCenterX() > zom.getCenterX()) {
 						dx = 0;
 					}
 				}
@@ -74,16 +74,16 @@ public class Enemy extends Sprite {
 			
 			
 		}
-		if (x1 == this.x) {
+		if (x1 == this.getCenterX()) {
 			dx = 0;
 			
 		}
 		
-		if (y1 > this.y) {
+		if (y1 > this.getCenterY()) {
 			dy = 2;
 			for(Enemy zom: zombies) {
 				if(zom.getIsVisible()) {
-					if(Math.abs(y  - zom.getY()) < fuckU && (zom.getX() != x && zom.getY() != y) && y < zom.getY()) {
+					if(Math.abs(getCenterY()  - zom.getCenterY()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() < zom.getCenterY()) {
 						dy = 0;
 					}
 				}
@@ -91,13 +91,13 @@ public class Enemy extends Sprite {
 			}
 			
 		}
-		if (y1 < this.y) {
+		if (y1 < this.getCenterY()) {
 			
 			dy = -2;
 			
 			for(Enemy zom: zombies) {
 				if(zom.isVisible) {
-					if(  Math.abs(y  - zom.getY() ) < fuckU &&  (zom.getX() != x && zom.getY() != y) && y > zom.getY()) {
+					if(  Math.abs(getCenterY()  - zom.getCenterY() ) < fuckU &&  (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() > zom.getCenterY()) {
 						dy = 0;
 					}
 				}
@@ -106,7 +106,7 @@ public class Enemy extends Sprite {
 			
 		}
 		
-		if (y1 == this.y) {
+		if (y1 == this.getCenterY()) {
 			dy = 0;
 		}
 		x += dx;

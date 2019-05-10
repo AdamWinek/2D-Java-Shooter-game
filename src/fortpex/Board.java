@@ -218,13 +218,23 @@ public class Board extends JPanel implements ActionListener  {
                 800 / 2);
    }
     
+    private void drawStartScreen(Graphics g) {
+    	
+    	
+    	
+    	
+    	
+    }
+    
+    
+    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		sprite.move();
 		
 		for (Enemy zom:round.getZombies()) {
-			zom.chase(sprite.getX(), sprite.getY(), round.getZombies());
+			zom.chase(sprite.getCenterX(), sprite.getCenterY(), round.getZombies());
 
 			
 			

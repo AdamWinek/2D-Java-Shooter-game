@@ -29,28 +29,29 @@ public class Player extends Sprite {
 	}
 
 	public void move() {
+		
 		x += dx;
 		y += dy;
 		
-		
-		if ( x  > 900 ) {
-			x = 900  ; 
+		if (getCenterX() + 15  > 1000 ) {
+			x = 970  ; 
 			dx = 0;	
 	
 			
 		}
-		if (x < 1) {
+		if (getCenterX() < 1) {
 			x = 1;
 			dx = 0;
 		}
-		if (y < 1) {
+		if (getCenterY() < 1) {
 			y = 1;
 			dy = 0;
 		}
-		if (y > 650) {
-			y = 650;
+		if (y + 30 > 780) {
+			y = 750;
 			dy = 0;
 		}
+		
 	}	
 	
 	public void keyPressed(KeyEvent e) {
