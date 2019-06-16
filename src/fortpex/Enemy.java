@@ -41,7 +41,7 @@ public class Enemy extends Sprite {
 		
 		
 		
-		int fuckU = 12;
+		int fuckU = 8;
 		
 		
 		
@@ -60,7 +60,7 @@ public class Enemy extends Sprite {
 			
 			
 		}
-		if (x1 < this.getCenterX()) {
+		if (x1 <= this.getCenterX()) {
 			
 			dx = -2;
 			for(Enemy zom: zombies) {
@@ -79,7 +79,7 @@ public class Enemy extends Sprite {
 			
 		}
 		
-		if (y1 > this.getCenterY()) {
+		if (y1 >= this.getCenterY()) {
 			dy = 2;
 			for(Enemy zom: zombies) {
 				if(zom.getIsVisible()) {
