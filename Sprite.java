@@ -18,7 +18,6 @@ public class Sprite {
 	protected String imageLocation;
 	
 	protected int health = 10;
-	protected int score = 0;
 	
 	
 	
@@ -82,9 +81,6 @@ public class Sprite {
 	public Rectangle getBounds() {
         return new Rectangle(x, y, w, h);
     }
-	public int getScore( ) {
-		return score;
-	}
 	
 	
 	public boolean checkCollision(Sprite obj) {
@@ -104,9 +100,7 @@ public class Sprite {
 	public void changeVisible() {
 		isVisible = false;
 	}
-	public void changeHealth(int amount) {
-		this.health += health;
-	}
+	
 	
 	
 	

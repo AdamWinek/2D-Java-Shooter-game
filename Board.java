@@ -12,8 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -29,8 +27,6 @@ public class Board extends JPanel implements ActionListener  {
 	private boolean shot = false;
 	private Round round;
 	Image image;
-	private List<Healthkit> kits = new ArrayList();
-	
 	
 	
 	public Board() {
@@ -59,11 +55,6 @@ public class Board extends JPanel implements ActionListener  {
 	
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        
-        
-        
-        
         
         
         if (!touched) {
@@ -146,15 +137,6 @@ public class Board extends JPanel implements ActionListener  {
         	
         	break;
         }
-        
-        for (Healthkit kit: kits) {
-        	if (kit.getIsVisible()) {
-        		g2d.drawImage(kit.getImage(), kit.getX(), kit.getY(), this);
-            }
-        }
-        	
-        
-        
    
        for (Enemy zom: round.getZombies()) {
         	 
@@ -208,15 +190,11 @@ public class Board extends JPanel implements ActionListener  {
         
         Font tr = new Font("Monospaced", Font.BOLD, 18);
   
-        Color red = new Color (196, 67, 41);
-        Color yellow = new Color (255 ,255 , 255);
+        Color red = new Color (201, 64, 105);
+        Color yellow = new Color (226 ,185 , 61);
         g.setFont(tr);
         g.setColor(yellow);
         g.drawString("Rounds survived " + round.getRoundCount(), 10 ,  45);
-        
-        g.drawString("Score: " + sprite.getScore(), 10, 105);
-        
-       
         
         Graphics healthbar = (Graphics2D) g;
         
@@ -231,14 +209,13 @@ public class Board extends JPanel implements ActionListener  {
     private void drawGameOver(Graphics g) {
 
     	String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 50);
+        Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
-        
         g.setColor(Color.black);
         g.setFont(small);
         g.drawString(msg, (1000 - fm.stringWidth(msg)) / 2,
-                800 / 2 );
+                800 / 2);
    }
     
     private void drawStartScreen(Graphics g) {
@@ -275,18 +252,10 @@ public class Board extends JPanel implements ActionListener  {
 				bullet.bulletMove(Player.directionFacing.NORTH);
 				if (bullet.checkCollision(zom)) {
 					shot = true;
-					sprite.shotZom();
 					zom.shotat();
 					bullet.changeVisible();
 					if (zom.getHealth() == 0 || zom.getHealth() == 1) {
 						zom.changeVisible();
-						double random = Math.random();
-								if (random >= .9) {
-									kits.add(new Healthkit(zom.getCenterX(), zom.getCenterY(), "src/resources/healthkit.png"));
-								}
-						
-						
-						
 						
 					}
 					
@@ -295,21 +264,6 @@ public class Board extends JPanel implements ActionListener  {
 			}
 
 		}
-		for (Healthkit kit: kits) {
-			if(sprite.checkCollision(kit)) {
-				if(sprite.getHealth() < 9) {
-					sprite.changeHealth(2);
-					kit.changeVisible();
-				}
-				
-			}
-		}
-		
-		
-		
-		
-		
-		
 		if (round.isRoundOver()) {
 			round.roundOver();
 			round.runRound(sprite);
