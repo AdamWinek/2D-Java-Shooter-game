@@ -190,8 +190,8 @@ public class Board extends JPanel implements ActionListener  {
         
         Font tr = new Font("Monospaced", Font.BOLD, 18);
   
-        Color red = new Color (201, 64, 105);
-        Color yellow = new Color (226 ,185 , 61);
+        Color red = new Color (0, 0, 0);
+        Color yellow = new Color (247 ,187 , 9);
         g.setFont(tr);
         g.setColor(yellow);
         g.drawString("Rounds survived " + round.getRoundCount(), 10 ,  45);
