@@ -130,6 +130,9 @@ public class Player extends Sprite {
 	public void shotAt() {
 		health -= 2;
 	}
+	public void shotZom() {
+		score += 1;
+	}
 	public boolean isOnleftOfScreen() {
 		return x <= 500;
 	}

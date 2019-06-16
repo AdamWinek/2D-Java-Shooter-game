@@ -190,11 +190,15 @@ public class Board extends JPanel implements ActionListener  {
         
         Font tr = new Font("Monospaced", Font.BOLD, 18);
   
-        Color red = new Color (0, 0, 0);
-        Color yellow = new Color (247 ,187 , 9);
+        Color red = new Color (196, 67, 41);
+        Color yellow = new Color (255 ,255 , 255);
         g.setFont(tr);
         g.setColor(yellow);
         g.drawString("Rounds survived " + round.getRoundCount(), 10 ,  45);
+        
+        g.drawString("Score: " + sprite.getScore(), 10, 105);
+        
+       
         
         Graphics healthbar = (Graphics2D) g;
         
@@ -252,6 +256,7 @@ public class Board extends JPanel implements ActionListener  {
 				bullet.bulletMove(Player.directionFacing.NORTH);
 				if (bullet.checkCollision(zom)) {
 					shot = true;
+					sprite.shotZom();
 					zom.shotat();
 					bullet.changeVisible();
 					if (zom.getHealth() == 0 || zom.getHealth() == 1) {
