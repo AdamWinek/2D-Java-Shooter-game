@@ -1,5 +1,7 @@
  package fortpex;
 
+import java.util.List;
+
 public class Enemy extends Sprite {
 
 	private double rot;
@@ -31,24 +33,80 @@ public class Enemy extends Sprite {
 	
 	
 	
-	public void chase(int x1,int y1) {
-		if (x1 > this.x) {
+	public void chase(int x1,int y1, List<Enemy> zombies) {
+		
+		
+		
+		
+		
+		
+		
+		int fuckU = 8;
+		
+		
+		
+		if (x1 > this.getCenterX()) {
 			dx = 2;
+			for(Enemy zom: zombies) {
+				if (zom.isVisible) {
+					if(Math.abs(getCenterX()  - zom.getCenterX()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterX() < zom.getCenterX()) {
+						dx = 0;
+					}
+				}
+				
+			}
+			
+			
+			
+			
 		}
-		if (x1 < this.x) {
+		if (x1 <= this.getCenterX()) {
+			
 			dx = -2;
+			for(Enemy zom: zombies) {
+				if(zom.getIsVisible()) {
+					if(Math.abs(getCenterX()  - zom.getCenterX()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY())  && getCenterX() > zom.getCenterX()) {
+						dx = 0;
+					}
+				}
+				
+			}
+			
+			
 		}
-		if (x1 == this.x) {
+		if (x1 == this.getCenterX()) {
 			dx = 0;
 			
 		}
-		if (y1 > this.y) {
+		
+		if (y1 >= this.getCenterY()) {
 			dy = 2;
+			for(Enemy zom: zombies) {
+				if(zom.getIsVisible()) {
+					if(Math.abs(getCenterY()  - zom.getCenterY()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() < zom.getCenterY()) {
+						dy = 0;
+					}
+				}
+				
+			}
+			
 		}
-		if (y1 < this.y) {
+		if (y1 < this.getCenterY()) {
+			
 			dy = -2;
+			
+			for(Enemy zom: zombies) {
+				if(zom.isVisible) {
+					if(  Math.abs(getCenterY()  - zom.getCenterY() ) < fuckU &&  (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() > zom.getCenterY()) {
+						dy = 0;
+					}
+				}
+				
+			}
+			
 		}
-		if (y1 == this.y) {
+		
+		if (y1 == this.getCenterY()) {
 			dy = 0;
 		}
 		x += dx;
