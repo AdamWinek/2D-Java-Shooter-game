@@ -292,8 +292,11 @@ public class Board extends JPanel implements ActionListener  {
 		}
 		for (Healthkit kit: kits) {
 			if(sprite.checkCollision(kit)) {
-				sprite.changeHealth(2);
-				kit.changeVisible();
+				if(sprite.getHealth() < 9) {
+					sprite.changeHealth(2);
+					kit.changeVisible();
+				}
+				
 			}
 		}
 		
