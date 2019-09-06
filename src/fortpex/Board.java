@@ -73,7 +73,8 @@ public class Board extends JPanel implements ActionListener  {
 				doDrawing(g);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// e.printStackTrace();
+				System.out.print("shit done fucked up");
 			}
         } else {
         	
@@ -222,7 +223,7 @@ public class Board extends JPanel implements ActionListener  {
         
         healthbar.setColor(red);
         healthbar.drawString("Health:" , 10, 75);
-        healthbar.fillRect(95, 60, (int) ((int)150 / (( round.getHealth()/sprite.getHealth()))), 15);
+        healthbar.fillRect(95, 60, 15 * sprite.getHealth(), 15);
         }
         
 
