@@ -309,6 +309,7 @@ public class Board extends JPanel implements ActionListener  {
 					// kills zombie if its health is 0 or 1
 					if (zom.getHealth() == 0 || zom.getHealth() == 1) {
 						zom.changeVisible();
+						
 						double random = Math.random();
 								// creates health kit
 								if (random >= .85 && random <= .95) {
@@ -331,8 +332,10 @@ public class Board extends JPanel implements ActionListener  {
 		}
 		for (Healthkit kit: kits) {
 			if(sprite.checkCollision(kit)) {
-				if(sprite.getHealth() < 9) {
+				if(sprite.getHealth() <= 8) {
+					
 					sprite.changeHealth(2);
+					
 					
 				}
 				kit.changeVisible();

@@ -41,7 +41,7 @@ public class Enemy extends Sprite {
 		
 		
 		
-		int fuckU = 8;
+		int distancetootherzom = 8;
 		
 		
 		
@@ -49,7 +49,7 @@ public class Enemy extends Sprite {
 			dx = 2;
 			for(Enemy zom: zombies) {
 				if (zom.isVisible) {
-					if(Math.abs(getCenterX()  - zom.getCenterX()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterX() < zom.getCenterX()) {
+					if(Math.abs(getCenterX()  - zom.getCenterX()) < distancetootherzom  && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterX() < zom.getCenterX()) {
 						dx = 0;
 					}
 				}
@@ -65,7 +65,7 @@ public class Enemy extends Sprite {
 			dx = -2;
 			for(Enemy zom: zombies) {
 				if(zom.getIsVisible()) {
-					if(Math.abs(getCenterX()  - zom.getCenterX()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY())  && getCenterX() > zom.getCenterX()) {
+					if(Math.abs(getCenterX()  - zom.getCenterX()) < distancetootherzom  && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY())  && getCenterX() > zom.getCenterX()) {
 						dx = 0;
 					}
 				}
@@ -83,7 +83,7 @@ public class Enemy extends Sprite {
 			dy = 2;
 			for(Enemy zom: zombies) {
 				if(zom.getIsVisible()) {
-					if(Math.abs(getCenterY()  - zom.getCenterY()) < fuckU && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() < zom.getCenterY()) {
+					if(Math.abs(getCenterY()  - zom.getCenterY()) < distancetootherzom  && (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() < zom.getCenterY()) {
 						dy = 0;
 					}
 				}
@@ -97,7 +97,7 @@ public class Enemy extends Sprite {
 			
 			for(Enemy zom: zombies) {
 				if(zom.isVisible) {
-					if(  Math.abs(getCenterY()  - zom.getCenterY() ) < fuckU &&  (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() > zom.getCenterY()) {
+					if(  Math.abs(getCenterY()  - zom.getCenterY() ) < distancetootherzom  &&  (zom.getCenterX() != getCenterX() && zom.getCenterY() != getCenterY()) && getCenterY() > zom.getCenterY()) {
 						dy = 0;
 					}
 				}

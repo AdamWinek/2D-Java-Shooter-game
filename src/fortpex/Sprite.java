@@ -105,7 +105,7 @@ public class Sprite {
 		isVisible = false;
 	}
 	public void changeHealth(int amount) {
-		this.health += health;
+		this.health += amount;
 	}
 	
 	
