@@ -281,6 +281,7 @@ public class Board extends JPanel implements ActionListener  {
 					bullet.changeVisible();
 					if (zom.getHealth() == 0 || zom.getHealth() == 1) {
 						zom.changeVisible();
+						
 						double random = Math.random();
 								if (random >= .9) {
 									kits.add(new Healthkit(zom.getCenterX(), zom.getCenterY(), "src/resources/healthkit.png"));
@@ -298,8 +299,10 @@ public class Board extends JPanel implements ActionListener  {
 		}
 		for (Healthkit kit: kits) {
 			if(sprite.checkCollision(kit)) {
-				if(sprite.getHealth() < 9) {
+				if(sprite.getHealth() <= 8) {
+					
 					sprite.changeHealth(2);
+					
 					
 				}
 				kit.changeVisible();
