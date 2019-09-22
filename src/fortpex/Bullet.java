@@ -13,6 +13,7 @@ public class Bullet extends Sprite {
 	
 	
 	private boolean hasShot;
+	
 
 	public Bullet(int x, int y, String imageLocation) {
 		super(x, y, imageLocation);
@@ -89,7 +90,24 @@ public class Bullet extends Sprite {
 		}
 		isVisible = true;
 	}
-	
+	public void changeToLauncher() {
+		
+		super.imageLocation = "src/resources/rocket.png";
+		loadImage();
+		Image newImage = image.getScaledInstance(5 , 5, Image.SCALE_DEFAULT);
+		super.image = newImage;
+		
+		
+	}
+	public void original() {
+		super.imageLocation = "src/resources/bullet.png";
+		loadImage();
+		
+		
+		
+		Image newImage = image.getScaledInstance(5 , 5, Image.SCALE_DEFAULT);
+		super.image = newImage;
+	}
 	
 	
 }

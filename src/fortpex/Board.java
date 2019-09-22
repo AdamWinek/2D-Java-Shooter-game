@@ -30,6 +30,9 @@ public class Board extends JPanel implements ActionListener  {
 	private Round round;
 	Image image;
 	private List<Healthkit> kits = new ArrayList();
+	private List<RocketLauncher> launcher = new ArrayList();
+	boolean isLauncher = false;
+
 	
 	
 	
@@ -54,7 +57,6 @@ public class Board extends JPanel implements ActionListener  {
 		image = back.getImage();
 		Image newImage = image.getScaledInstance(1000, 800, Image.SCALE_DEFAULT);
 		image = newImage;
-		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -147,16 +149,25 @@ public class Board extends JPanel implements ActionListener  {
         	
         	break;
         }
+        // draws health kits
         
         for (Healthkit kit: kits) {
         	if (kit.getIsVisible()) {
         		g2d.drawImage(kit.getImage(), kit.getX(), kit.getY(), this);
             }
         }
+        //draws rocket Launcher
+        for (RocketLauncher launchers: launcher) {
+        	if (launchers.getIsVisible()) {
+        		g2d.drawImage(launchers.getImage(), launchers.getX(), launchers.getY(), this);
+        		
+            }
+        	
+        }
         	
         
         
-   
+        // draws zombies
        for (Enemy zom: round.getZombies()) {
         	 
             zom.angleBetween(sprite.getX(), sprite.getY());
@@ -180,10 +191,19 @@ public class Board extends JPanel implements ActionListener  {
         	
         	
         }
-        
+        // draw bullet
         for (Bullet bullet: sprite.bullets) {
         	
-        	if (bullet.getIsVisible()) {
+        	
+        	if (isLauncher) {
+        		bullet.changeToLauncher();
+//        	} else {
+//        		bullet.original();
+//        	}
+        	}
+        	
+        	
+        	if (bullet.getIsVisible() && !isLauncher) {
         		
         		switch (sprite.getDirection()) {
         		case NORTH:
@@ -201,12 +221,14 @@ public class Board extends JPanel implements ActionListener  {
         			
         			break;
         		}
+        	
         		
         	}
         	
         	
+        	
         }
-        
+        // draws scoreboard
         Font tr = new Font("Monospaced", Font.BOLD, 18);
   
         Color red = new Color (196, 67, 41);
@@ -256,34 +278,45 @@ public class Board extends JPanel implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		sprite.move();
-		
+		// Zombie movement
 		for (Enemy zom:round.getZombies()) {
 			zom.chase(sprite.getCenterX(), sprite.getCenterY(), round.getZombies());
 
 			
 			
-
+			//knocks back player if they come in contact with a sprite
 			if (sprite.checkCollision(zom)) {
 				sprite.shotAt();
 				zom.knockBack();
 			}
+			//signals game over if the player is dead 
 			if (sprite.getHealth() == 0) {
 				touched = true;
 				
 			}
 			
+			
 			for (Bullet bullet: sprite.bullets) {
+				// bullet movement
 				bullet.bulletMove(Player.directionFacing.NORTH);
+				
+				//checks if a zombie is hit by a bullet
 				if (bullet.checkCollision(zom)) {
 					shot = true;
 					sprite.shotZom();
 					zom.shotat();
 					bullet.changeVisible();
+					// kills zombie if its health is 0 or 1
 					if (zom.getHealth() == 0 || zom.getHealth() == 1) {
 						zom.changeVisible();
 						double random = Math.random();
-								if (random >= .9) {
+								// creates health kit
+								if (random >= .85 && random <= .95) {
 									kits.add(new Healthkit(zom.getCenterX(), zom.getCenterY(), "src/resources/healthkit.png"));
+								}
+								// adds rocket launcher 1 out of 20 times
+								if (random > .95) {
+									launcher.add(new RocketLauncher(zom.getCenterX(), zom.getCenterY(), "src/resources/rocket.png"));
 								}
 						
 						
@@ -304,7 +337,14 @@ public class Board extends JPanel implements ActionListener  {
 				}
 				kit.changeVisible();
 			}
+		}for (RocketLauncher launchers: launcher) {
+			if(sprite.checkCollision(launchers)) {
+				launchers.changeVisible();
+				isLauncher = true;
+				
+			}
 		}
+		
 		
 		
 		

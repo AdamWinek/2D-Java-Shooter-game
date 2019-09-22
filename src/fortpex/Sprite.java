@@ -31,7 +31,7 @@ public class Sprite {
 	}
 
 	
-	private void loadImage() {
+	protected void loadImage() {
 		ImageIcon ii = new ImageIcon(imageLocation);
 		int dimensionsX = 30;
 		int dimensionsY = 30;
