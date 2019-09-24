@@ -45,6 +45,7 @@ public class Board extends JPanel implements ActionListener  {
 	private void initBoard() {
 		addKeyListener(new TAdapter());
         // setBackground(Color.white);
+		// looked ok but the picture implementation is better
         setFocusable(true);
 		
         sprite = new Player(0, 0, "src/resources/player.png");
@@ -195,12 +196,8 @@ public class Board extends JPanel implements ActionListener  {
         for (Bullet bullet: sprite.bullets) {
         	
         	
-        	if (isLauncher) {
-        		bullet.changeToLauncher();
-//        	} else {
-//        		bullet.original();
-//        	}
-        	}
+        	
+        	
         	
         	
         	if (bullet.getIsVisible() && !isLauncher) {
@@ -223,6 +220,23 @@ public class Board extends JPanel implements ActionListener  {
         		}
         	
         		
+        	} else {
+        		switch (sprite.getDirection()) {
+        		case NORTH:
+        			g2d.drawImage(bullet.getLauncherImage(), bullet.getX() + 6, bullet.getY() , this);
+        			break;
+        		case EAST:
+        			g2d.drawImage(bullet.getLauncherImage(), bullet.getX(), bullet.getY()  + 6 , this);
+        			break;
+        		case SOUTH:
+        			
+        			g2d.drawImage(bullet.getLauncherImage(), bullet.getX() - 10, bullet.getY() , this);
+        			break;
+        		case WEST:
+        			g2d.drawImage(bullet.getLauncherImage(), bullet.getX(), bullet.getY()  - 10 , this);
+        			
+        			break;
+        		}
         	}
         	
         	
@@ -316,9 +330,9 @@ public class Board extends JPanel implements ActionListener  {
 									kits.add(new Healthkit(zom.getCenterX(), zom.getCenterY(), "src/resources/healthkit.png"));
 								}
 								// adds rocket launcher 1 out of 20 times
-								if (random > .95) {
-									launcher.add(new RocketLauncher(zom.getCenterX(), zom.getCenterY(), "src/resources/rocket.png"));
-								}
+//								if (random > .95) {
+//									launcher.add(new RocketLauncher(zom.getCenterX(), zom.getCenterY(), "src/resources/rocket.png"));
+//								}
 						
 						
 						
@@ -340,13 +354,13 @@ public class Board extends JPanel implements ActionListener  {
 				}
 				kit.changeVisible();
 			}
-		}for (RocketLauncher launchers: launcher) {
-			if(sprite.checkCollision(launchers)) {
-				launchers.changeVisible();
-				isLauncher = true;
-				
-			}
-		}
+//		}for (RocketLauncher launchers: launcher) {
+//			if(sprite.checkCollision(launchers)) {
+//				launchers.changeVisible();
+//				isLauncher = true;
+//				
+//			}
+    	}
 		
 		
 		

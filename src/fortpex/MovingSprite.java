@@ -21,7 +21,7 @@ public class MovingSprite extends JFrame {
 	
 	private void initUI() {
 		add(new Board());
-		setTitle("fuck");
+		setTitle("2D Shooter Game");
 		setSize( 1000, 800);
 		setLocationRelativeTo(null);
         setResizable(false);

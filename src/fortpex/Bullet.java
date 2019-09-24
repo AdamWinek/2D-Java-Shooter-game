@@ -4,6 +4,8 @@ package fortpex;
 
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
+
 import fortpex.Player.directionFacing;
 
 
@@ -12,7 +14,8 @@ import fortpex.Player.directionFacing;
 public class Bullet extends Sprite {
 	
 	
-	private boolean hasShot;
+	protected boolean hasShot;
+	private Image launcherImage;
 	
 
 	public Bullet(int x, int y, String imageLocation) {
@@ -26,6 +29,15 @@ public class Bullet extends Sprite {
 		
 		Image newImage = image.getScaledInstance(dimensionsX , dimensionsY, Image.SCALE_DEFAULT);
 		image = newImage;
+		
+		ImageIcon ii = new ImageIcon("src/resources/rocket.png");
+		
+		
+		launcherImage = ii.getImage();
+		Image newImage1 = launcherImage.getScaledInstance(dimensionsX, dimensionsY, Image.SCALE_DEFAULT);
+		launcherImage = newImage;
+		
+		
 	}
 
 	
@@ -41,7 +53,7 @@ public class Bullet extends Sprite {
 			
 				switch (d) {
 				case NORTH:
-					dy = -5;
+					dy = (-1) * 5;
 					break;
 				case EAST:
 					dx = 5;
@@ -50,7 +62,7 @@ public class Bullet extends Sprite {
 					dy = 5;
 					break;
 				case WEST:
-					dx = -5;
+					dx = (-1) * 5;
 					break;
 					
 				}	
@@ -90,24 +102,9 @@ public class Bullet extends Sprite {
 		}
 		isVisible = true;
 	}
-	public void changeToLauncher() {
-		
-		super.imageLocation = "src/resources/rocket.png";
-		loadImage();
-		Image newImage = image.getScaledInstance(5 , 5, Image.SCALE_DEFAULT);
-		super.image = newImage;
-		
-		
-	}
-	public void original() {
-		super.imageLocation = "src/resources/bullet.png";
-		loadImage();
-		
-		
-		
-		Image newImage = image.getScaledInstance(5 , 5, Image.SCALE_DEFAULT);
-		super.image = newImage;
-	}
 	
+	public Image getLauncherImage() {
+		return launcherImage;
+	}
 	
 }
